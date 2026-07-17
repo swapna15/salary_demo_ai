@@ -1,0 +1,31 @@
+@prefix pay: <https://hr.example/pay#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+pay:Employee a owl:Class .
+pay:PayItem a owl:Class .
+
+pay:Earning a owl:Class ;
+    rdfs:subClassOf pay:PayItem .
+
+pay:Deduction a owl:Class ;
+    rdfs:subClassOf pay:PayItem .
+
+pay:Gross a owl:Class ;
+    rdfs:subClassOf pay:Earning .
+
+pay:Bonus a owl:Class ;
+    rdfs:subClassOf pay:Earning ;
+    rdfs:comment "One-time: never guaranteed to repeat" .
+
+pay:Tax a owl:Class ;
+    rdfs:subClassOf pay:Deduction .
+
+pay:Insurance a owl:Class ;
+    rdfs:subClassOf pay:Deduction .
+
+pay:netPay a owl:DatatypeProperty ;
+    rdfs:comment "Derived: total Earnings minus total Deductions" .
+
+pay:Pension a owl:Class ;
+    rdfs:subClassOf pay:Deduction .

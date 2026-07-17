@@ -1,0 +1,12 @@
+PREFIX pay: <https://hr.example/pay#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?month ?kind ?class ?amount WHERE {
+  ?item pay:ofEmployee pay:E-102 ;
+        pay:inMonth ?month ;
+        pay:amount ?amount ;
+        a ?class .
+  ?class rdfs:subClassOf ?kind .
+  FILTER(?kind IN (pay:Earning, pay:Deduction))
+}
+ORDER BY ?month ?kind
